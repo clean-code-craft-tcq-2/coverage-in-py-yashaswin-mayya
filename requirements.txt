@@ -1,1 +1,4 @@
 coverage
+
+// Total coverage is 97%
+// All statemets are covered in unit test cases except "__main__" block
