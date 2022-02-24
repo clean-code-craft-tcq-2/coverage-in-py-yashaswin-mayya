@@ -2,8 +2,8 @@ Coverage:
 
 Module 	                statements 	    missing 	    excluded 	    branches 	    partial 	   coverage
 typewise_alert.py 	        29 	            0 	            0 	            4           	0          	100%
-typewise_alert.test.py     	28             	0 	            0 	            6 	          1 	        97%
-Total                      	57 	            0 	            0 	            10 	          1       	  99%
+typewise_alert.test.py     	28             	0 	            0 	            6 	          	1 	        97%
+Total                      	57 	            0 	            0 	            10 	          	1       	99%
 
 coverage.py v6.3.2, created at 2022-02-24 15:52 +0000
 
