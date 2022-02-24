@@ -5,20 +5,19 @@ import typewise_alert
 
 class TypewiseTest(unittest.TestCase):
   def test_infers_breach_as_per_limits(self):
-    self.assertTrue(typewise_alert.infer_breach(20, 50, 100) == 'TOO_LOW')
-
+    
     coolingType_list = {
       'PASSIVE_COOLING'     : [0,35],
       'HI_ACTIVE_COOLING'   : [0,45],
       'MED_ACTIVE_COOLING'  : [0,40]
     }
   
-    for coolingType in coolingType_list:
+    for cooling_type in coolingType_list.keys():
       batteryChar = dict()
-      batteryChar['coolingType'] = coolingType
+      batteryChar['coolingType'] = cooling_type
 
-      lowerLimit = coolingType_list.get(coolingType[0])
-      upperLimit = coolingType_list.get(coolingType[1])
+      lowerLimit = coolingType_list.get(cooling_type[0])
+      upperLimit = coolingType_list.get(cooling_type[1])
 
     
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit-1) == 'TOO_LOW')
