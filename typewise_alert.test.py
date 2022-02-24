@@ -20,24 +20,30 @@ class TypewiseTest(unittest.TestCase):
       upperLimit = coolingType_list.get(cooling_type)[1]
 
     
+      #Boundary Value Analysis (BVA) for testing range
       self.assertTrue(typewise_alert.classify_temperature_breach(cooling_type, lowerLimit-1) == 'TOO_LOW')
-      self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], upperLimit) == 'NORMAL')
+      self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit) == 'NORMAL')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit+1) == 'NORMAL')
 
+      #Equivalence Class Partitioning (ECP) for testing range
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], (lowerLimit+upperLimit)/2) == 'NORMAL')
 
+      #BVA for testing range
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], upperLimit+1) == 'TOO_HIGH')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], upperLimit) == 'NORMAL')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], upperLimit-1) == 'NORMAL')
 
+      #BVA and ECP for testing range
       self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', batteryChar, lowerLimit-1) == '65261, TOO_LOW')
       self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', batteryChar, (lowerLimit+upperLimit)/2) == '65261, NORMAL')
       self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', batteryChar, upperLimit+1) == '65261, TOO_HIGH')
 
+      #BVA and ECP for testing range
       self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', batteryChar, lowerLimit-1) == 'To: a.b@c.com \nHi, the temperature is too low')
       self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', batteryChar, (lowerLimit+upperLimit)/2) == 'To: a.b@c.com \nHi, Breach not found!')
       self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', batteryChar, upperLimit+1) == 'To: a.b@c.com \nHi, the temperature is too high')
 
+      #Negative Condition Testing by introduction of undefined value for a random value in range
       self.assertTrue(typewise_alert.check_and_alert('TO_SMS', batteryChar, randrange(lowerLimit, upperLimit)) == 'Invalid Alert Type!')
 
       print('All is well')
