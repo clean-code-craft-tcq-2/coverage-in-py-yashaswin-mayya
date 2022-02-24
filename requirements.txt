@@ -1,6 +1,7 @@
 coverage
 
 #Total coverage is 99%
+
 #Coverage for typewise_alert.py is 100%
-#Coverage for typewise_alert.test.py 	is 97% with 1 statemetn partially covered
+#Coverage for typewise_alert.test.py is 97% with 1 statemetn partially covered
 #The partially covered 1 statemt is: "__main__" block.
