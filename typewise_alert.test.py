@@ -16,11 +16,11 @@ class TypewiseTest(unittest.TestCase):
       batteryChar = dict()
       batteryChar['coolingType'] = cooling_type
 
-      lowerLimit = coolingType_list.get(cooling_type[0])
-      upperLimit = coolingType_list.get(cooling_type[1])
+      lowerLimit = coolingType_list.get(cooling_type)[0]
+      upperLimit = coolingType_list.get(cooling_type)[1]
 
     
-      self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit-1) == 'TOO_LOW')
+      self.assertTrue(typewise_alert.classify_temperature_breach(cooling_type, lowerLimit-1) == 'TOO_LOW')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], upperLimit) == 'NORMAL')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit+1) == 'NORMAL')
 
@@ -39,6 +39,8 @@ class TypewiseTest(unittest.TestCase):
       self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', batteryChar, upperLimit+1) == 'To: a.b@c.com \nHi, the temperature is too high')
 
       self.assertTrue(typewise_alert.check_and_alert('TO_SMS', batteryChar, randrange(lowerLimit, upperLimit)) == 'Invalid Alert Type!')
+
+      print('All is well')
 
 
       
