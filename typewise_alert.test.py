@@ -21,7 +21,7 @@ class TypewiseTest(unittest.TestCase):
 
     
       #Boundary Value Analysis (BVA) for testing range
-      self.assertTrue(typewise_alert.classify_temperature_breach(cooling_type, lowerLimit-1) == 'TOO_LOW')
+      self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit-1) == 'TOO_LOW')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit) == 'NORMAL')
       self.assertTrue(typewise_alert.classify_temperature_breach(batteryChar['coolingType'], lowerLimit+1) == 'NORMAL')
 
